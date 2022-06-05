@@ -1,0 +1,15 @@
+numpy
+requests
+tqdm>=4.47.0
+regex
+transformers>=4.6.0
+datasets
+scipy
+scikit-learn
+seqeval
+tensorboard
+pandas
+tokenizers
+wandb>=0.10.32
+streamlit
+sentencepiece
