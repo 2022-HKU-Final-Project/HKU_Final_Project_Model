@@ -43,7 +43,7 @@ class DistilBertBiLSTMForSequenceClassification(DistilBertPreTrainedModel):
 
         self.distilbert = DistilBertModel(config)
         self.pre_classifier = nn.LSTM(config.dim, config.dim,batch_first=True,bidirectional=False)
-        self.l1 = nn.Linear(4*config.dim,config.dim)
+        self.l1 = nn.Linear(2*config.dim,config.dim)
         self.classifier = nn.Linear(config.dim, config.num_labels)
         self.dropout = nn.Dropout(config.seq_classif_dropout)
 
