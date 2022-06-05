@@ -64,7 +64,7 @@ class DistilBertBiGRUForSequenceClassification(DistilBertPreTrainedModel):
         hidden_state = distilbert_output[0]  # (bs, seq_len, dim)
         pooled_output,_ = self.pre_classifier(hidden_state)  # (bs,seq_len,dim)
         avg_pool = torch.mean(pooled_output,1)
-        max_pool = torch.max(pooled_output,1)
+        max_pool,_ = torch.max(pooled_output,1)
         pooled_output = torch.cat((avg_pool,max_pool),1)
         pooled_output = nn.ReLU()(pooled_output)  # (bs, dim)
         pooled_output = self.dropout(pooled_output)  # (bs, dim)
