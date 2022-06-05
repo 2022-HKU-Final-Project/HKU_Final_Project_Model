@@ -129,7 +129,7 @@ from simpletransformers.losses.loss_utils import init_loss
 
 # from simpletransformers.custom_models.models import ElectraForSequenceClassification
 from simpletransformers.custom_models.bert_lstm import DistilBertLSTMForSequenceClassification
-
+from simpletransformers.custom_models.bert_bilstm import DistilBertBiLSTMForSequenceClassification
 try:
     import wandb
 
@@ -199,6 +199,11 @@ class ClassificationModel:
             "distilbert-lstm":(
                 DistilBertConfig,
                 DistilBertLSTMForSequenceClassification,
+                DistilBertTokenizerFast,
+                ),
+            "distilbert-bilstm":(
+                DistilBertConfig,
+                DistilBertBiLSTMForSequenceClassification,
                 DistilBertTokenizerFast,
                 ),
             "albert": (AlbertConfig, AlbertForSequenceClassification, AlbertTokenizer),
