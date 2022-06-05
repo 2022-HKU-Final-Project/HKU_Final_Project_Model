@@ -8,7 +8,7 @@ from transformers.models.distilbert.modeling_distilbert import (
 )
 
 
-class DistilBertLSTMForSequenceClassification(DistilBertPreTrainedModel):
+class DistilBertBiLSTMForSequenceClassification(DistilBertPreTrainedModel):
     r"""
         **labels**: (`optional`) ``torch.LongTensor`` of shape ``(batch_size,)``:
             Labels for computing the sequence classification/regression loss.
@@ -37,7 +37,7 @@ class DistilBertLSTMForSequenceClassification(DistilBertPreTrainedModel):
     """  # noqa: ignore flake8"
 
     def __init__(self, config, weight=None):
-        super(DistilBertLSTMForSequenceClassification, self).__init__(config)
+        super(DistilBertBiLSTMForSequenceClassification, self).__init__(config)
         self.num_labels = config.num_labels
         self.weight = weight
 
