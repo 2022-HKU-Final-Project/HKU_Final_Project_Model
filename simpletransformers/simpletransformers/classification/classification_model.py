@@ -4,6 +4,7 @@
 
 from __future__ import absolute_import, division, print_function
 import collections
+import imp
 import logging
 import math
 import os
@@ -132,6 +133,7 @@ from simpletransformers.custom_models.bert_lstm import DistilBertLSTMForSequence
 from simpletransformers.custom_models.bert_bilstm import DistilBertBiLSTMForSequenceClassification
 from simpletransformers.custom_models.bert_gru import DistilBertGRUForSequenceClassification
 from simpletransformers.custom_models.bert_bigru import DistilBertBiGRUForSequenceClassification
+from simpletransformers.custom_models.bert_cnn import DistilBertCNNForSequenceClassification
 try:
     import wandb
 
@@ -216,6 +218,11 @@ class ClassificationModel:
             "distilbert-bi-gru":(
                 DistilBertConfig,
                 DistilBertBiGRUForSequenceClassification,
+                DistilBertTokenizerFast,
+                ),
+            "distilbert-cnn":(
+                DistilBertConfig,
+                DistilBertCNNForSequenceClassification,
                 DistilBertTokenizerFast,
                 ),
             "albert": (AlbertConfig, AlbertForSequenceClassification, AlbertTokenizer),
