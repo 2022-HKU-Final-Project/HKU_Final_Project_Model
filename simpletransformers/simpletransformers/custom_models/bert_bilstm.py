@@ -74,9 +74,9 @@ class DistilBertBiLSTMForSequenceClassification(DistilBertPreTrainedModel):
         reg_loss = None
         for param in DistilBertBiLSTMForSequenceClassification.parameters():
             if reg_loss is None:
-            reg_loss = 0.5 * torch.sum(param**2)
-        else:
-            reg_loss = reg_loss + 0.5 * param.norm(2)**2
+                reg_loss = 0.5 * torch.sum(param**2)
+            else:
+                reg_loss = reg_loss + 0.5 * param.norm(2)**2
 
         outputs = (logits,) + distilbert_output[1:]
         if labels is not None:
@@ -89,7 +89,7 @@ class DistilBertBiLSTMForSequenceClassification(DistilBertPreTrainedModel):
                 else:
                     weight = None
                 loss_fct = CrossEntropyLoss(weight=weight)
-                loss = loss_fct(logits.view(-1, self.num_labels), labels.view(-1)) + 0.75 * reg_loss
+                loss = loss_fct(logits.view(-1, self.num_labels), labels.view(-1)) + 1e-5 * reg_loss
             outputs = (loss,) + outputs
 
         return outputs  # (loss), logits, (hidden_states), (attentions)
