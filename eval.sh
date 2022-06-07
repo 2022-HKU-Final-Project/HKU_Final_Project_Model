@@ -1,0 +1,1 @@
+nohup python3 Evaluate.py -model distilbert-cnn -path distilbert-cnn_outputs/best_model > eval.log 2>&1 &

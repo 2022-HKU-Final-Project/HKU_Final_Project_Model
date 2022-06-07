@@ -76,7 +76,7 @@ class ModelArgs:
     polynomial_decay_schedule_power: float = 1.0
     process_count: int = field(default_factory=get_default_process_count)
     quantized_model: bool = False
-    reprocess_input_data: bool = True
+    reprocess_input_data: bool = False
     save_best_model: bool = True
     save_eval_checkpoints: bool = True
     save_model_every_epoch: bool = True
