@@ -1178,8 +1178,8 @@ class ClassificationModel:
                 output_dir, "checkpoint-{}-epoch-{}".format(global_step, epoch_number)
             )
 
-            if args.save_model_every_epoch or args.evaluate_during_training:
-                os.makedirs(output_dir_current, exist_ok=True)
+            # if args.save_model_every_epoch or args.evaluate_during_training:
+            #     os.makedirs(output_dir_current, exist_ok=True)
 
             if args.save_model_every_epoch:
                 self.save_model(output_dir_current, optimizer, scheduler, model=model)
@@ -1193,9 +1193,9 @@ class ClassificationModel:
                     **kwargs,
                 )
 
-                self.save_model(
-                    output_dir_current, optimizer, scheduler, results=results
-                )
+                # self.save_model(
+                #     output_dir_current, optimizer, scheduler, results=results
+                # )
 
                 training_progress_scores["global_step"].append(global_step)
                 training_progress_scores["train_loss"].append(current_loss)

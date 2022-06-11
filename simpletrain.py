@@ -91,7 +91,7 @@ if __name__ == '__main__':
     model_args.output_dir = args.m + "_outputs/"
     model_args.best_model_dir =  args.m + "_outputs/best_model"
 #Create a ClassificationModel
-     model = ClassificationModel(
+    model = ClassificationModel(
      args.m,
     'distilbert-base-multilingual-cased',
      num_labels=65,
@@ -100,7 +100,14 @@ if __name__ == '__main__':
 
 #Train the model
     model.train_model(train_dataset,eval_df = val_dataset)
- 
+    print('train performance:', end='\n')
+    model = TransformerModel(args.m, model_args.best_model_dir, num_labels=np_labels)
+    train_y, _ = model.predict(train_texts.tolist())
+    print(classification_report(le.inverse_transform(train_labels),le.inverse_transform(train_y)))
+
+    print('validation performance:', end='\n')
+    val_y, _ = model.predict(val_texts.tolist())
+    print(classification_report(le.inverse_transform(val_labels),le.inverse_transform(val_y)))
 
 
 # In[11]:
