@@ -76,7 +76,7 @@ class DistilBertCNNForSequenceClassification(DistilBertPreTrainedModel):
         logits = self.classifier(pooled_output)  # (bs, dim)
 
         reg_loss = None
-        for param in DistilBertCNNForSequenceClassification.parameters():
+        for param in self.parameters():
             if reg_loss is None:
                 reg_loss = 0.5 * torch.sum(param**2)
             else:
@@ -91,7 +91,7 @@ class DistilBertCNNForSequenceClassification(DistilBertPreTrainedModel):
                 if self.weight is not None:
                     weight = self.weight.to(labels.device)
                 else:
-                    weight = Nones
+                    weight = None
                 loss_fct = CrossEntropyLoss(weight=weight)
                 loss = loss_fct(logits.view(-1, self.num_labels), labels.view(-1)) + 1e-5 * reg_loss
             outputs = (loss,) + outputs

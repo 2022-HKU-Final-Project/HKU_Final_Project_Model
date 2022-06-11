@@ -50,7 +50,7 @@ data['true_job'] = data['true_job'].apply(lambda x:le.transform([x])[0])
 
 from sklearn.model_selection import train_test_split
 
-train_texts, val_texts, train_labels, val_labels = train_test_split(data['parsedText'], data['true_job'], test_size=.2,random_state=0,stratify=train_labels)
+train_texts, val_texts, train_labels, val_labels = train_test_split(data['parsedText'], data['true_job'], test_size=.2,random_state=0,stratify=data['true_job'])
 
 
 # In[8]:
@@ -94,7 +94,7 @@ if __name__ == '__main__':
     model = ClassificationModel(
      args.m,
     'distilbert-base-multilingual-cased',
-     num_labels=65,
+     num_labels=len(np.unique(data['true_job'].tolist())),
      args=model_args
     )
 

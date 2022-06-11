@@ -72,7 +72,7 @@ class DistilBertBiLSTMForSequenceClassification(DistilBertPreTrainedModel):
         logits = self.classifier(pooled_output)  # (bs, dim)
         
         reg_loss = None
-        for param in DistilBertBiLSTMForSequenceClassification.parameters():
+        for param in self.parameters():
             if reg_loss is None:
                 reg_loss = 0.5 * torch.sum(param**2)
             else:
