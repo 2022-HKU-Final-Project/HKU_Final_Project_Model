@@ -20,7 +20,7 @@ transformers_logger.setLevel(logging.WARNING)
 # In[2]:
 
 
-data = pd.read_csv("./data/train_set.csv")
+data = pd.read_csv("./data/train_set_10w.csv")
 
 
 # In[3]:
@@ -32,8 +32,8 @@ print(data.head())
 # In[5]:
 
 
-# le = preprocessing.LabelEncoder()
-# le.fit(np.unique(data['jobCate'].tolist()))
+le = preprocessing.LabelEncoder()
+le.fit(np.unique(data['true_job'].tolist()))
 # print('标签值标准化:%s' % le.transform(["专业顾问", "美容师", "美发助理/学徒", "置业顾问","行政专员/助理"]))
 # print('标准化标签值反转:%s' % le.inverse_transform([0, 80 ,79 ,78 ,81]))
 
@@ -41,7 +41,7 @@ print(data.head())
 # In[6]:
 
 
-# data['jobCate'] = data['jobCate'].apply(lambda x:le.transform([x])[0])
+data['true_job'] = data['true_job'].apply(lambda x:le.transform([x])[0])
 
 
 # In[7]:
@@ -50,7 +50,7 @@ print(data.head())
 
 from sklearn.model_selection import train_test_split
 
-train_texts, val_texts, train_labels, val_labels = train_test_split(data['jobDesc'], data['jobPosition'], test_size=.2)
+train_texts, val_texts, train_labels, val_labels = train_test_split(data['parsedText'], data['true_job'], test_size=.2,random_state=0,stratify=train_labels)
 
 
 # In[8]:
