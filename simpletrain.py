@@ -80,9 +80,9 @@ def f1_multiclass(labels, preds):
 
 if __name__ == '__main__':
 # Optional model configuration
-     parser = argparse.ArgumentParser()
-     parser.add_argument('-m', help="name of model")
-     model_args = ClassificationArgs(num_train_epochs=1000,
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-m', help="name of model")
+    model_args = ClassificationArgs(num_train_epochs=1000,
                                     evaluate_during_training=True,
                                     save_eval_checkpoints = False,
                                     save_model_every_epoch = True
