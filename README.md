@@ -12,8 +12,6 @@
    git clone https://github.com/2022-HKU-Final-Project/back-end.git
    ```
 
-   
-
 2. Download the dependencies and libraries.
 
    ```bash
