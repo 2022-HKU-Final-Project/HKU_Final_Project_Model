@@ -19,6 +19,8 @@ pip install -r requirements.txt
    ```
    
    Requirements.txt contains all the required python package related to django and project.
+   
+   
 
 ##### Start server
 
