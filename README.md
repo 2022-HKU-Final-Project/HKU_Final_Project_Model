@@ -19,8 +19,6 @@ pip install -r requirements.txt
    ```
    
    Requirements.txt contains all the required python package related to django and project.
-   
-   
 
 ##### Start server
 
@@ -31,18 +29,6 @@ python manage.py runserver xxx
 ```
 
 After starting server sucessfully, if you use the default server port, you can visit the website from url http://127.0.0.1:8000/
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -149,6 +135,14 @@ fork=true # 以守护进程的方式运行MongoDB，创建服务器进程
 
 #### Model
 
+##### Down Code
+
+```bash
+git clone git@github.com:2022-HKU-Final-Project/HKU_Final_Project_Model.git
+```
+
+
+
 ##### Requirements
 
 CUDA Version: 11.2  
@@ -234,10 +228,38 @@ def scheduler_monitor():
 
 
 
+#for the front-end
+
+###The front-end environment:
+1. Download and install node.js from https://nodejs.org.
+2. Using 'node -v' to check if it is installed successfully.
+3. Using 'npm -v' to check npm version
+
+# technology stack including 'vue' 'cue-router' 'vue-cli' 'less' 'axios' 'lodash' 'es6~7' 'express' 'node-fetch' 'http-proxy-middleware'
+4. Install vue.js using 'npm install vue -g'
+5. 'npm install -g vue-cli' to install vue-cli.
+6. 'npm install -g vue-router' to install vue-router
+7.  The same npm methods to install 'less','axis','lodash' 'es6~7' 'express' 'node-fetch' 'http-proxy-middleware'.
+8.  If having error 'echarts not exist', npm install echarts
 
 
+##If you want to run front-end individually:
+```bash
+npm install
+```
+### Start server API
 
+```bash
+npm run server 
+```
 
+### If you modify the front-end, What we need is to compiles and minifies it to the back-end
+
+```bash
+npm run build
+```
+
+Then add the 'dist' folder to back-end. Relevant routers are written in urls.py under HKU_Project. And views.py is for return data used by front-end.
 
 
 
