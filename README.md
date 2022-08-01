@@ -15,7 +15,7 @@
 2. Download the dependencies and libraries.
 
    ```bash
-pip install -r requirements.txt
+   pip install -r requirements.txt
    ```
    
    Requirements.txt contains all the required python package related to django and project.
@@ -228,14 +228,15 @@ def scheduler_monitor():
 
 
 
-#for the front-end
+# for the front-end
 
-###The front-end environment:
+### The front-end environment:
 1. Download and install node.js from https://nodejs.org.
 2. Using 'node -v' to check if it is installed successfully.
 3. Using 'npm -v' to check npm version
 
-# technology stack including 'vue' 'cue-router' 'vue-cli' 'less' 'axios' 'lodash' 'es6~7' 'express' 'node-fetch' 'http-proxy-middleware'
+## Technology stack including 'vue' 'cue-router' 'vue-cli' 'less' 'axios' 'lodash' 'es6~7' 'express' 'node-fetch' 'http-proxy-middleware'
+
 4. Install vue.js using 'npm install vue -g'
 5. 'npm install -g vue-cli' to install vue-cli.
 6. 'npm install -g vue-router' to install vue-router
@@ -243,7 +244,7 @@ def scheduler_monitor():
 8.  If having error 'echarts not exist', npm install echarts
 
 
-##If you want to run front-end individually:
+## If you want to run front-end individually:
 ```bash
 npm install
 ```
@@ -260,6 +261,3 @@ npm run build
 ```
 
 Then add the 'dist' folder to back-end. Relevant routers are written in urls.py under HKU_Project. And views.py is for return data used by front-end.
-
-
-
