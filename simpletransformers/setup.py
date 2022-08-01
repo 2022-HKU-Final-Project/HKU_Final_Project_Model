@@ -1,7 +1,7 @@
 from setuptools import find_packages, setup
 
-# with open("README.md", "r") as fh:
-#     long_description = fh.read()
+with open("README.md", "r") as fh:
+    long_description = fh.read()
 
 setup(
     name="simpletransformers",
@@ -9,8 +9,8 @@ setup(
     author="Thilina Rajapakse",
     author_email="chaturangarajapakshe@gmail.com",
     description="An easy-to-use wrapper library for the Transformers library.",
-    # long_description=long_description,
-    # long_description_content_type="text/markdown",
+    long_description=long_description,
+    long_description_content_type="text/markdown",
     url="https://github.com/ThilinaRajapakse/simpletransformers/",
     packages=find_packages(),
     scripts=["bin/simple-viewer"],

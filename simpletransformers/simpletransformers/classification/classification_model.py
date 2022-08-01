@@ -4,7 +4,6 @@
 
 from __future__ import absolute_import, division, print_function
 import collections
-import imp
 import logging
 import math
 import os
@@ -133,7 +132,6 @@ from simpletransformers.custom_models.bert_lstm import DistilBertLSTMForSequence
 from simpletransformers.custom_models.bert_bilstm import DistilBertBiLSTMForSequenceClassification
 from simpletransformers.custom_models.bert_gru import DistilBertGRUForSequenceClassification
 from simpletransformers.custom_models.bert_bigru import DistilBertBiGRUForSequenceClassification
-from simpletransformers.custom_models.bert_cnn import DistilBertCNNForSequenceClassification
 try:
     import wandb
 
@@ -205,7 +203,7 @@ class ClassificationModel:
                 DistilBertLSTMForSequenceClassification,
                 DistilBertTokenizerFast,
                 ),
-            "distilbert-bilstm":(
+            "bert-bilstm":(
                 DistilBertConfig,
                 DistilBertBiLSTMForSequenceClassification,
                 DistilBertTokenizerFast,
@@ -218,11 +216,6 @@ class ClassificationModel:
             "distilbert-bi-gru":(
                 DistilBertConfig,
                 DistilBertBiGRUForSequenceClassification,
-                DistilBertTokenizerFast,
-                ),
-            "distilbert-cnn":(
-                DistilBertConfig,
-                DistilBertCNNForSequenceClassification,
                 DistilBertTokenizerFast,
                 ),
             "albert": (AlbertConfig, AlbertForSequenceClassification, AlbertTokenizer),
@@ -1178,8 +1171,8 @@ class ClassificationModel:
                 output_dir, "checkpoint-{}-epoch-{}".format(global_step, epoch_number)
             )
 
-            # if args.save_model_every_epoch or args.evaluate_during_training:
-            #     os.makedirs(output_dir_current, exist_ok=True)
+            if args.save_model_every_epoch or args.evaluate_during_training:
+                os.makedirs(output_dir_current, exist_ok=True)
 
             if args.save_model_every_epoch:
                 self.save_model(output_dir_current, optimizer, scheduler, model=model)
@@ -1193,9 +1186,9 @@ class ClassificationModel:
                     **kwargs,
                 )
 
-                # self.save_model(
-                #     output_dir_current, optimizer, scheduler, results=results
-                # )
+                self.save_model(
+                    output_dir_current, optimizer, scheduler, results=results
+                )
 
                 training_progress_scores["global_step"].append(global_step)
                 training_progress_scores["train_loss"].append(current_loss)
@@ -1715,10 +1708,11 @@ class ClassificationModel:
                 ),
             )
 
-            if os.path.exists(cached_features_file) and (
-                (not args.reprocess_input_data and not no_cache)
-                or (mode == "dev" and args.use_cached_eval_features and not no_cache)
-            ):
+#            if os.path.exists(cached_features_file) and (
+#                (not args.reprocess_input_data and not no_cache)
+#                or (mode == "dev" and args.use_cached_eval_features and not no_cache)
+#            ):
+            if True:
                 features = torch.load(cached_features_file)
                 if verbose:
                     logger.info(
@@ -1970,6 +1964,9 @@ class ClassificationModel:
                             "fn": fn,
                             "auroc": auroc,
                             "auprc": auprc,
+                            "precision": tp / (tp+fp),
+                            "recall": tp / (tp + fn),
+                            "F1-score": (tp / (tp+fp)) * (tp / (tp + fn)) / (tp / (tp + fn) + tp / (tp+fp))
                         },
                         **extra_metrics,
                     },

@@ -53,7 +53,7 @@ class ModelArgs:
     evaluate_each_epoch: bool = True
     fp16: bool = True
     gradient_accumulation_steps: int = 1
-    learning_rate: float = 4e-5
+    learning_rate: float = 1e-5
     local_rank: int = -1
     logging_steps: int = 50
     loss_type: str = None
@@ -76,7 +76,7 @@ class ModelArgs:
     polynomial_decay_schedule_power: float = 1.0
     process_count: int = field(default_factory=get_default_process_count)
     quantized_model: bool = False
-    reprocess_input_data: bool = False
+    reprocess_input_data: bool = True
     save_best_model: bool = True
     save_eval_checkpoints: bool = True
     save_model_every_epoch: bool = True

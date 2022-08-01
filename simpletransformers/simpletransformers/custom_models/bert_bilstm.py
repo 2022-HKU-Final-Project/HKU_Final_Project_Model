@@ -48,6 +48,7 @@ class DistilBertBiLSTMForSequenceClassification(DistilBertPreTrainedModel):
         self.dropout = nn.Dropout(config.seq_classif_dropout)
 
         self.init_weights()
+        print(config.dim)
 
     def forward(
         self,
@@ -70,7 +71,6 @@ class DistilBertBiLSTMForSequenceClassification(DistilBertPreTrainedModel):
         pooled_output = self.dropout(pooled_output)  # (bs, dim)
         pooled_output = self.l1(pooled_output)
         logits = self.classifier(pooled_output)  # (bs, dim)
-        
         reg_loss = None
         for param in self.parameters():
             if reg_loss is None:
@@ -89,7 +89,7 @@ class DistilBertBiLSTMForSequenceClassification(DistilBertPreTrainedModel):
                 else:
                     weight = None
                 loss_fct = CrossEntropyLoss(weight=weight)
-                loss = loss_fct(logits.view(-1, self.num_labels), labels.view(-1)) + 1e-5 * reg_loss
+                loss = loss_fct(logits.view(-1, self.num_labels), labels.view(-1)) + 1e-5*reg_loss
             outputs = (loss,) + outputs
 
         return outputs  # (loss), logits, (hidden_states), (attentions)

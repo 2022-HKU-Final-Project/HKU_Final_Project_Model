@@ -5,12 +5,12 @@ from simpletransformers.losses import FocalLoss, DiceLoss, TverskyLoss
 
 
 def init_loss(weight, device, args):
-    # if weight and args.loss_type:
-    #     warnings.warn(
-    #         f"weight and args.loss_type parametters are set at the same time"
-    #         f"will use weighted cross entropy loss. To use {args.loss_type} set weight to None"
-    #     )
-    if weight.all():
+    if weight and args.loss_type:
+        warnings.warn(
+            f"weight and args.loss_type parametters are set at the same time"
+            f"will use weighted cross entropy loss. To use {args.loss_type} set weight to None"
+        )
+    if weight:
         loss_fct = CrossEntropyLoss(weight=torch.Tensor(weight).to(device))
     elif args.loss_type:
         if args.loss_type == "focal":
